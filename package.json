@@ -1,0 +1,53 @@
+{
+  "name": "@capri-js/monorepo",
+  "private": true,
+  "scripts": {
+    "dev": "tsc --build packages --watch",
+    "clean": "tsc --build packages --clean",
+    "build": "tsc --build packages",
+    "lint": "eslint . && prettier --check .",
+    "lint:fix": "eslint --fix . && prettier --write .",
+    "test": "vitest --run",
+    "examples": "node .github/build-examples",
+    "release": "multi-semantic-release --sequential-init --deps.prefix ^"
+  },
+  "devDependencies": {
+    "@qiwi/multi-semantic-release": "^7.1.1",
+    "@semantic-release/commit-analyzer": "^11.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^11.0.2",
+    "@testing-library/dom": "^9.3.3",
+    "@testing-library/jest-dom": "^6.2.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jsdom": "^21.1.6",
+    "@types/node": "^20.10.6",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "@vitejs/plugin-legacy": "^3.0.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "jsdom": "^23.0.1",
+    "prettier": "^3.1.1",
+    "typescript": "^4.9.4",
+    "vitest": "^0.32.0"
+  },
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "release": {
+    "branches": [
+      "main",
+      {
+        "name": "next",
+        "prerelease": true
+      }
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ]
+  }
+}
